@@ -3,6 +3,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
+published: https://Petras-aleksandar988.github.io/movieland-react
 
 In the project directory, you can run:
 
