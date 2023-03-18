@@ -3,7 +3,7 @@ import "./App.css";
 import SearchIcon from "./search.svg";
 import MovieCard from "./MovieCard";
 
-const api_url = "http://omdbapi.com?apikey=eb01f497";
+const api_url = "https://www.omdbapi.com/?i=tt3896198&apikey=eb01f497";
 
 export default function App() {
   const [movies, setMovies] = useState([]);
@@ -12,12 +12,11 @@ export default function App() {
   async function searchMovies(movie) {
     const res = await fetch(`${api_url}&s=${movie}`);
     let data = await res.json();
-    console.log(data.Search);
-    setMovies(data.Search);
+  setMovies(prevMovies=> data.Search)
   }
 
   useEffect(() => {
-    searchMovies("spiderman");
+    searchMovies();
   }, []);
 
   return (
@@ -36,7 +35,7 @@ export default function App() {
         />
       </div>
 
-      {movies.length > 0 ? (
+      {movies?.length > 0 ? (
         <div className="container">
           {movies.map((movie) => (
             <MovieCard key={movie.imdbID} movie={movie} />
