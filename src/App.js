@@ -3,7 +3,7 @@ import "./App.css";
 import SearchIcon from "./search.svg";
 import MovieCard from "./MovieCard";
 
-const api_url = "https://www.omdbapi.com/?i=tt3896198&apikey=eb01f497";
+const api_url = `https://www.omdbapi.com/?i=tt3896198&apikey=${process.env.REACT_APP_API_KEY}`;
 
 export default function App() {
   const [movies, setMovies] = useState([]);
@@ -12,7 +12,12 @@ export default function App() {
   async function searchMovies(movie) {
     const res = await fetch(`${api_url}&s=${movie}`);
     let data = await res.json();
-  setMovies(prevMovies=> data.Search)
+    setMovies(data.Search);
+  }
+  function searchEnterKey(e) {
+    if (e.key === "Enter") {
+      searchMovies(searchTerm);
+    }
   }
 
   useEffect(() => {
@@ -27,6 +32,7 @@ export default function App() {
           placeholder="search for the movie"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyDown={searchEnterKey}
         />
         <img
           src={SearchIcon}
