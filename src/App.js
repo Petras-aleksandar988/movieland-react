@@ -14,7 +14,8 @@ export default function App() {
     let data = await res.json();
     setMovies(data.Search);
   }
-  function searchEnterKey(e) {
+  function EnterKey(e) {
+    console.log(e.key);
     if (e.key === "Enter") {
       searchMovies(searchTerm);
     }
@@ -32,7 +33,7 @@ export default function App() {
           placeholder="search for the movie"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          onKeyDown={searchEnterKey}
+          onKeyUp={EnterKey}
         />
         <img
           src={SearchIcon}
