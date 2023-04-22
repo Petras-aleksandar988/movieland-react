@@ -3,19 +3,18 @@ import "./App.css";
 import SearchIcon from "./search.svg";
 import MovieCard from "./MovieCard";
 
-const api_url = `https://www.omdbapi.com/?i=tt3896198&apikey=${process.env.REACT_APP_API_KEY}`;
+const api_url = `http://www.omdbapi.com/?apikey=e5ffcf69`;
 
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  // eb01f497
+  
   async function searchMovies(movie) {
     const res = await fetch(`${api_url}&s=${movie}`);
     let data = await res.json();
     setMovies(data.Search);
   }
   function EnterKey(e) {
-    console.log(e.key);
     if (e.key === "Enter") {
       searchMovies(searchTerm);
     }
